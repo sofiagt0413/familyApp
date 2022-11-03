@@ -1,4 +1,8 @@
 # Instrucciones para ejecutar este proyecto de CODERHOUSE
+#### Grupo de Trabajo Diana Sofia Tenorio y Andrés Felipe Toro
+
+\
+
 ### 1. Abrir Git Bash para `Windows` o una terminal para `Linux/Unix` y clonar el proyecto.
 
 ```bash
