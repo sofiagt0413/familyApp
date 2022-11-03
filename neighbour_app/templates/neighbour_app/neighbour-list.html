@@ -1,0 +1,28 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content %}
+
+<a class="btn btn-primary float-right" href="{% url 'neighbour_app:neighbour-add' %}">Crear nuevo vecino</a>
+<br>
+
+<div class="pt-3 text-center">
+    <h2>Lista de Vecinos</h2>
+</div>
+
+<br>
+<div class="px-5">
+    <ul class="list-group">
+        {% for neighbour in neighbours %}
+        <li class="list-group-item">
+            <p class="h5"> <b>{{ neighbour.nombre }}</b> <br>
+                <i>Barrio:</i> {{ neighbour.barrio }}
+                <span class="mx-3"></span>
+                <i>Edad: </i>{{ neighbour.edad }}
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

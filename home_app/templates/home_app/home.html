@@ -2,18 +2,39 @@
 {% load static %}
 
 {% block family_app_content %}
-    <div class="pt-3 text-center">
-        <h2>Busqueda de Familiares</h2>
-    </div>
-    <br>
-    <div class="px-5">
-        <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-    </div>
+<div class="pt-3 text-center">
+    <h2>Busqueda de Familiares</h2>
+</div>
+<br><br>
+<div class="text-center">
+    <!-- Buscador -->
+    <form action="{% url 'home_app:home' %}" method="GET">
+        <div>
+            <input type="text" name="search_param" id="familiar" placeholder="Buscar.." {% if search_param %}
+                value="{{ search_param }}" {% endif %}>
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+</div>
+<!-- Divider-->
+<hr class="my-5" />
+
+<!-- Si hay resultados en el buscador los presenta -->
+{% if familiars %}
+<div class="px-5">
+    <ul class="list-group">
+        {% for familiar in familiars %}
+        <li class="list-group-item">
+            <p class="h5"> <b>{{ familiar.nombre }}</b> <br>
+                <i>Altura:</i> {{ familiar.altura }}
+                <span class="mx-3"></span>
+                <i>Fecha de nacimiento: </i>{{ familiar.fecha_nacimiento }}
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+</div>
 
 {% endblock %}
