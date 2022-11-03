@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Person(models.Model):
+class Familiar(models.Model):
     nombre = models.CharField(max_length = 80)
     altura = models.IntegerField()
     fecha_nacimiento = models.DateField()

@@ -1,7 +1,7 @@
 from django import forms
 
 
-class PersonForm(forms.Form):
+class FamiliarForm(forms.Form):
 
     nombre = forms.CharField(
         label="Nombre",
@@ -18,7 +18,7 @@ class PersonForm(forms.Form):
     altura = forms.IntegerField(
         label="Altura:",
         required=True,
-        widget=forms.TextInput(
+        widget=forms.NumberInput(
             attrs={
                 "class": "form-control",
                 "placeholder": "Altura en cm",
@@ -30,8 +30,9 @@ class PersonForm(forms.Form):
     fecha_nacimiento = forms.DateField(
         label="Fecha Nacimiento",
         required=True,
-        widget=forms.DateTimeInput(
+        widget=forms.DateInput(
             attrs={
+                "type": "date",
                 "class": "form-control",
                 "required": "True",
             }

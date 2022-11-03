@@ -1,0 +1,28 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content %}
+
+<a class="btn btn-primary float-right" href="{% url 'familiar_app:familiar-add' %}">Crear nuevo Familiar</a>
+<br>
+
+<div class="pt-3 text-center">
+    <h2>Lista de Familiares</h2>
+</div>
+
+<br>
+<div class="px-5">
+    <ul class="list-group">
+        {% for familiar in familiars %}
+        <li class="list-group-item">
+            <p class="h5"> <b>{{ familiar.nombre }}</b> <br>
+                <i>Altura:</i> {{ familiar.altura }}
+                <span class="mx-3"></span>
+                <i>Fecha de nacimiento: </i>{{ familiar.fecha_nacimiento }}
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
