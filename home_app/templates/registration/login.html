@@ -1,0 +1,25 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content %}
+
+<h1>Login</h1>
+
+<div class="row">
+    <div class="col-6">
+        {% if form.errors %}
+        <p style="color: red">Combinación de username y password incorrecta, intenta de nuevo.</p>
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Iniciar Sesión" />
+        </form>
+    </div>
+    <div class="col-6 text-center">
+        <a class="btn btn-secondary" href="{% url 'home_app:user-register' %}">Registrar nuevo usuario</a>
+    </div>
+</div>
+
+{% endblock %}

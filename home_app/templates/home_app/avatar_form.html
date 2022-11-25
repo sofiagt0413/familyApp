@@ -1,0 +1,13 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content %}
+<h1>Cargar Avatar</h1>
+
+    <h1>Usuario: {{user.username}} | {{user.first_name}} {{user.last_name}}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Cargar Imagen</button>
+    </form>
+{% endblock %}
