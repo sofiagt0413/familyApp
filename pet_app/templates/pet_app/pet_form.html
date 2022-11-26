@@ -8,13 +8,13 @@
 {% block family_app_content %}
 
 <div class="pt-3 text-center">
-    <h2>Nueva mascota</h2>
+    <h2>Publicación de mascota</h2>
     <br/>
 
     <div>
         <div class="card mx-auto" style="max-width: 30rem;">
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <input type="submit" class="btn btn-primary" value="Guardar" />

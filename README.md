@@ -1,7 +1,9 @@
-# Instrucciones para ejecutar este proyecto de CODERHOUSE
-#### Grupo de Trabajo Diana Sofia Tenorio y Andrés Felipe Toro
+## Grupo de Trabajo:
+ - Diana Sofia Tenorio: Crud basado modelo
+ - Andrés Felipe Toro: Sistema de autentificación
 
-\
+# Instrucciones para ejecutar este proyecto de CODERHOUSE
+
 
 ### 1. Abrir Git Bash para `Windows` o una terminal para `Linux/Unix` y clonar el proyecto.
 
@@ -37,9 +39,17 @@ python manage.py makemigrations
 ```bash
 python manage.py migrate
 ```
-### 6. Levantar el servidor de Django que expone el servicio en el puerto por defecto 8000
+
+
+### 6. Crear el super usuario para nuestro proyecto de Django, **Solo si no se ha creado**
+```bash
+python manage.py createsuperuser
+```
+Ingrese `Username`, `Email address` y `Password` 
+
+### 7. Levantar el servidor de Django que expone el servicio en el puerto por defecto 8000
 ```bash
 python manage.py runserver
 ```
 
-- Es hora de ir al navegador y en una pestaña nueva navegar hacia `http://127.0.0.1:8000/` o `http://localhost:8000/` para visualizar la paguina principal en esta encontara un menu lateral para navegar por las diferentes funcionalidades
+### 8. Es hora de ir al navegador y en una pestaña nueva navegar hacia `http://127.0.0.1:8000/` o `http://localhost:8000/` y abrir la seccion principal de `MASCOTAS`

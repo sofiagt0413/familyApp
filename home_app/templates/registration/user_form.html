@@ -1,0 +1,23 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content%}
+<h1>Actualizar Usuario</h1>
+<br>
+<p>Usuario: {{user.username}} | Nombre: {{user.first_name}} {{user.last_name}}</p>
+{% if avatar_url %}
+<a href="{% url 'home_app:avatar-load' %}"><img width="250" src="{{ avatar_url }}" alt="user image"></a>
+{% else %}
+<a href="{% url 'home_app:avatar-load' %}"><img width="250" src="{% static 'home_app/img/profile.jpg' %}" alt="user image"></a>
+{% endif %}
+<p class="text-muted">Click en la imagen para cambiarla</p>
+<br><br>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a class="btn btn-secondary" href="{% url 'home_app:password-change' %}">Cambiar Password</a>
+    <input type="submit" class="btn btn-primary" value="Guardar usuario" />
+</form>
+
+{% endblock %}

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Family App</title>
+        <title>Pet App</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -19,7 +19,7 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">
                     <a href="{% url 'home_app:home' %}" class="text-decoration-none text-black text-center">
-                        <h3>Family App</h3>
+                        <h3>Pet App</h3>
                     </a>
                 </div>
                 <div class="list-group list-group-flush">
@@ -27,6 +27,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'familiar_app:familiar-list' %}">Familiares</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'neighbour_app:neighbour-list' %}">Vecinos</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'pet_app:pet-list' %}">Mascotas</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'home_app:about' %}">Acerca de mí</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -34,7 +35,19 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                        {% comment %} <button class="btn btn-primary" id="sidebarToggle">Menu</button> {% endcomment %}
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                {% comment %} <li class="nav-item active"><a class="nav-link" href="#!">Iniciar</a></li> {% endcomment %}
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"><a class="nav-link" href="{% url 'home_app:user-update' %}">Editar usuario</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión - {{ user.username }}</a></li>
+                                {% else %}
+                                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
                     </div>
                 </nav>
                 <!-- Page content-->

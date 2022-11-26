@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from neighbour_app.forms import neighbourForm
 from neighbour_app.models import Neighbour
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def neighbours(request):
@@ -13,7 +14,7 @@ def neighbours(request):
         template_name="neighbour_app/neighbour-list.html",
     )
 
-
+@login_required
 def create_neighbour(request):
     if request.method == "POST":
         neighbour_form = neighbourForm(request.POST)

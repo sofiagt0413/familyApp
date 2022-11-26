@@ -1,0 +1,14 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content %}
+
+<h3>Estás seguro de eliminar la publicación: {{pet.titulo}}?</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Si, eliminar.">
+    <a class="btn btn-primary" href="{% url 'pet_app:pet-detail' pet.id %}" >Cancelar</a>
+</form>
+
+{% endblock %}
