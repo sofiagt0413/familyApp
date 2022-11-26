@@ -11,7 +11,7 @@ from home_app.forms import UserRegisterForm
 from home_app.forms import UserUpdateForm
 from home_app.models import Avatar
 
-from familiar_app.models import Familiar
+from pet_app.models import Pet
 
 
 # Create your views here.
@@ -20,12 +20,12 @@ def search(request):
     if request.GET.get("search_param", False):
         search_param = request.GET["search_param"]
         if search_param:
-            query = Q(nombre__contains=search_param)
-            # query.add(Q(code__contains=search_param), Q.OR)
-            familiars = Familiar.objects.filter(query)
+            query = Q(titulo__contains=search_param)
+            query.add(Q(nombre__contains=search_param), Q.OR)
+            pet_list = Pet.objects.filter(query)
             context_dict.update(
                 {
-                    "familiars": familiars,
+                    "pet_list": pet_list,
                     "search_param": search_param,
                 }
             )

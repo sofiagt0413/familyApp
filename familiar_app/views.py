@@ -2,6 +2,7 @@ from django.shortcuts import render
 from familiar_app.forms import FamiliarForm
 from familiar_app.models import Familiar
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def familiars(request):
@@ -13,7 +14,7 @@ def familiars(request):
         template_name="familiar_app/familiar-list.html",
     )
 
-
+@login_required
 def create_familiar(request):
     if request.method == "POST":
         familiar_form = FamiliarForm(request.POST)

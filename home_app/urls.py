@@ -11,8 +11,8 @@ urlpatterns = [
     path("about", views.about, name="about"),
 
     path('avatar/load', views.avatar_load, name='avatar-load'),
-    path("register/", views.register, name="user-register"),
-    path('register/update/', views.user_update, name='user-update'),
+    path("accounts/signup", views.register, name="user-register"),
+    path('accounts/profile/', views.user_update, name='user-update'),
     path(
         'password_change/',
         auth_views.PasswordChangeView.as_view(

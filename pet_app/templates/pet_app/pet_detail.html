@@ -1,0 +1,61 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content %}
+<div class="container-fluid">
+    <h2 class="text-center post-subtitle my-2">{{ pet.titulo }}</h2>
+
+    {% if pet.imagen %}
+    <div style="text-align: center;">
+        <img height="250px" src="{{ pet.imagen.url }}">
+    </div>
+    {% endif %}
+
+    <p class="card-text ">{{ pet.descripcion }}</p>
+
+    <p class="post-meta">
+        Creado por:
+        <span style="color: #0b4956;" href="">{{ pet.owner.username }}</span>
+        ( {{ pet.created_at }} )
+        <br>
+        Última fecha de actualización ( {{ pet.updated_at }} )
+    </p>
+
+
+    <!-- Update-Delete link only for the owner -->
+    {% if user == pet.owner or user.is_superuser %}
+    <a class="btn btn-success" href="{% url 'pet_app:pet-update' pet.id %}">Editar Publicación</a>
+    <a class="btn btn-danger" href="{% url 'pet_app:pet-delete' pet.id %}">Eliminar Publicación</a>
+    {% endif %}
+
+    <!-- Divider-->
+
+    <hr class="my-4" />
+    <h4 class="text-center mb-5">Comentarios</h4>
+    <!-- Comment creation -->
+    {% if not comments %}
+    <p class="text-center text-muted"> Sin Comentarios</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'pet_app:comment-create' pet.id %}">
+        {% csrf_token %}
+        {{ comment_form }}
+        <input class="btn btn-primary" type="submit" value="Publicar comentario">
+    </form>
+
+    <!-- Comments list -->
+    <ul class="list-group mt-5">
+        {% for comment in comments %}
+        <li class="list-group-item">
+            <p> {{ comment.text }}
+                <span class="text-muted">({{ comment.owner.username }} | {{ comment.updated_at }})</span>
+                {% if user == comment.owner or user.is_superuser %}
+                <a class="btn btn-danger" href="{% url 'pet_app:comment-delete' comment.id %}">Borrar</a>
+                {% endif %}
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}

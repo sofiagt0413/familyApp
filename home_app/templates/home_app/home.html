@@ -20,15 +20,19 @@
 <hr class="my-5" />
 
 <!-- Si hay resultados en el buscador los presenta -->
-{% if familiars %}
+{% if pet_list %}
 <div class="px-5">
     <ul class="list-group">
-        {% for familiar in familiars %}
+        {% for pet in pet_list %}
         <li class="list-group-item">
-            <p class="h5"> <b>{{ familiar.nombre }}</b> <br>
-                <i>Altura:</i> {{ familiar.altura }}
-                <span class="mx-3"></span>
-                <i>Fecha de nacimiento: </i>{{ familiar.fecha_nacimiento }}
+            <a class="text" href="{% url 'pet_app:pet-detail' pet.id %}">
+                <h2>{{ pet.titulo }}</h2>
+            </a>
+            <h3>Mascota: {{ pet.nombre }}</h3>
+            <p class="post-meta">
+                Creado por
+                <span style="color: #0b4956;" href="">{{ pet.owner.username }}</span>
+                ( {{ pet.created_at }} )
             </p>
         </li>
         {% endfor %}

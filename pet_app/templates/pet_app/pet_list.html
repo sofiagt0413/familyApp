@@ -1,0 +1,65 @@
+{% extends "home_app/index.html" %}
+{% load static %}
+
+{% block family_app_content %}
+
+<a class="btn btn-primary float-right" href="{% url 'pet_app:pet-add' %}">Crear nueva Publicación</a>
+<br>
+
+<div class="pt-3 text-center">
+    <h2>Publicaciones de Mascotas</h2>
+</div>
+
+<br>
+
+{% if pet_list %}{% else %}
+<br>
+<p class="text-center"><b>No hay publicaciones</b></p>
+{% endif %}
+
+
+<div class="px-5">
+    <ul class="list-group">
+        {% for pet in pet_list %}
+        <li class="list-group-item">
+            <a class="text" href="{% url 'pet_app:pet-detail' pet.id %}">
+                <h2>{{ pet.titulo }}</h2>
+            </a>
+            <h3>Mascota: {{ pet.nombre }}</h3>
+            <p class="post-meta">
+                Creado por
+                <span style="color: #0b4956;" href="">{{ pet.owner.username }}</span>
+                ( {{ pet.created_at }} )
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!--Pagination Class Based Views-->
+    {% if is_paginated %}
+    <div class="container p-4">
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a> |
+                <a href="?page={{ pet_list.previous_page_number }}">previous</a> |
+                {% endif %}
+
+                {% if page_obj.paginator.num_pages > 1 %}
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                </span>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a> |
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    {% endif %}
+    <!--end of Pagination-->
+</div>
+
+{% endblock %}
